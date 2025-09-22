@@ -4,56 +4,322 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog - SirWinterSparta</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Assets/style.css">
+  <script src="Assets/script.js" defer></script>
+  
+  <style>
+    /* Navbar */
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      background-color: #000;
+      padding: 12px 0;
+    }
+    .navbar ul li {
+      margin: 0 15px;
+    }
+    .navbar ul li a {
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 5px yellow, 0 0 10px #ff0;
+    }
+    .navbar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 40vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url('https://i.postimg.cc/tTVWFKq1/blog.jpg') center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    }
+
+    /* Blog Section */
+    .blog {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    /* Manual Blog Posts */
+    .post {
+      margin-bottom: 40px;
+      padding: 25px;
+      border-radius: 12px;
+      background: #111;
+      color: #eee;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .post:hover {
+      transform: translateY(-5px);
+    }
+
+    .post h2 {
+      color: gold;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .post p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .post .read-more {
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid gold;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+
+    .post .read-more:hover {
+      background: gold;
+      color: black;
+    }
+
+    /* AI Blog Section */
+    .ai-blog-section {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 40px 0;
+      border: 2px dashed gold;
+    }
+
+    .ai-blog-section h2 {
+      text-align: center;
+      color: gold;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .ai-controls {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .ai-controls button {
+      background: gold;
+      color: black;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 5px;
+      transition: all 0.3s;
+    }
+
+    .ai-controls button:hover {
+      background: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    .ai-controls button:disabled {
+      background: #666;
+      color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Dynamic Blog Container */
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+
+    .blog-item {
+      background: #111;
+      color: #FFD700;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .blog-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .blog-item h3 {
+      color: gold;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .blog-item p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .blog-item a {
+      color: gold;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid gold;
+      padding: 6px 12px;
+      border-radius: 15px;
+      transition: all 0.3s;
+    }
+
+    .blog-item a:hover {
+      background: gold;
+      color: black;
+    }
+
+    .blog-item .ai-badge {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    .loading {
+      text-align: center;
+      color: gold;
+      font-style: italic;
+      padding: 20px;
+    }
+
+    footer {
+      background: #000;
+      color: #eee;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: gold;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links, .footer-stores, .footer-contact {
+      margin: 20px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .blog {
+        padding: 0 15px;
+      }
+      
+      .post, .ai-blog-section {
+        padding: 20px;
+      }
+      
+      .ai-controls {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
+
   <!-- Navbar -->
   <header>
     <nav class="navbar">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="packages.html">Packages</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="packages_.html">Packages</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact_.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero -->
-  <section class="hero blog-hero">
-    <div class="overlay">
-      <h1>Our Blog</h1>
-      <p>Stories, insights, and updates</p>
+  <section class="hero">
+    <h1>Our Blog</h1>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog">
+    <!-- Manual/Featured Blog Posts -->
+    <div class="post">
+      <h2>Matatu Culture Chronicles</h2>
+      <p>Stories from the streets of Nairobi and the heartbeat of matatu culture. Discover how these colorful vehicles became more than just transportation - they're moving art galleries, music venues, and cultural ambassadors.</p>
+      <a href="#" class="read-more">Read Full Story</a>
+    </div>
+
+    <div class="post">
+      <h2>Safari Travel Tips</h2>
+      <p>Learn how to prepare for the perfect Kenyan safari adventure. From packing essentials to wildlife etiquette, we share insider tips to make your safari unforgettable.</p>
+      <a href="#" class="read-more">Read Full Story</a>
+    </div>
+
+    <div class="post">
+      <h2>Behind the Scenes at SirWinterSparta</h2>
+      <p>How we create tours, merch, and stories that connect cultures. Get an exclusive look at our creative process and the people who make the magic happen.</p>
+      <a href="#" class="read-more">Read Full Story</a>
+    </div>
+
+    <!-- AI Blog Section -->
+    <div class="ai-blog-section">
+      <h2>AI-Generated Blog Posts</h2>
+      <p style="text-align: center; color: #ccc; margin-bottom: 20px;">
+        Fresh content automatically generated by AI based on trending topics and our brand
+      </p>
+      
+      <div class="ai-controls">
+        <button id="generate-ai-posts" onclick="generateAIPosts()">Generate New Posts</button>
+        <button id="refresh-topics" onclick="refreshTopics()">Refresh Topics</button>
+        <button id="clear-ai-posts" onclick="clearAIPosts()">Clear AI Posts</button>
+      </div>
+      
+      <div id="ai-blog" class="blog-container">
+        <!-- AI-generated posts will appear here -->
+        <div class="loading">Click "Generate New Posts" to create AI blog content...</div>
+      </div>
+    </div>
+
+    <!-- Manual Dynamic Posts -->
+    <div id="manual-blog" class="blog-container">
+      <!-- Manual posts will be populated by JavaScript -->
     </div>
   </section>
 
-  <!-- Blog Content -->
-  <section class="page-content blog-list">
-    <article class="blog-post">
-      <h3>The Vibrance of Matatu Culture</h3>
-      <p>Discover how Nairobi’s matatus inspire art, music, and creativity.</p>
-    </article>
-    <article class="blog-post">
-      <h3>Top 5 Road Trips in Kenya</h3>
-      <p>A guide to unforgettable adventures across the country.</p>
-    </article>
-    <article class="blog-post">
-      <h3>From Nairobi Streets to Global Screens</h3>
-      <p>How SirWinterSparta is taking Kenyan culture worldwide.</p>
-    </article>
-  </section>
-
   <!-- Footer -->
-      <footer>
+  <footer>
     <div class="footer-links">
       <p>Follow Us:</p>
       <a href="https://www.fb.com/l/6lp1kJRRR" target="_blank">Facebook</a> |
       <a href="https://www.instagram.com/sirwintersparta?igsh=MXE1dHVwZHZ1d3g1OA==" target="_blank">Instagram</a> |
       <a href="https://x.com/sirwintersparta?s=09" target="_blank">Twitter</a> |
-      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> 
-      <a href="https://pin.it/1aoHDrz2s" target="_blank">pinterest</a>
+      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> |
+      <a href="https://pin.it/1aoHDrz2s" target="_blank">Pinterest</a>
     </div>
 
     <div class="footer-stores">
@@ -66,10 +332,170 @@
 
     <div class="footer-contact">
       <p>Email: iyusuf35@yahoo.com</p>
-      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID:LGK2QMM67ZZNS</p>
-      <p>phone contacts: +254 700 160161/+254 725358159
-         </p>
-     </div>
+      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID: LGK2QMM67ZZNS</p>
+      <p>Phone contacts: +254 700 160161/+254 725358159</p>
+      <p>© 2025 Sirwintersparta. All Rights Reserved. Unauthorized use or reproduction is prohibited.</p>
+    </div>
   </footer>
+
+  <script>
+    // Manual blog data
+    const manualBlogData = [
+      { 
+        title: "The Matatu Culture Experience", 
+        excerpt: "Riding through Nairobi with graffiti vibes and pulsing music.", 
+        url: "#",
+        date: "2025-01-15"
+      },
+      { 
+        title: "Why Road Trips Build Brotherhood", 
+        excerpt: "Sparta vibes on the open road - discovering friendship through adventure.", 
+        url: "#",
+        date: "2025-01-10"
+      },
+      { 
+        title: "Sparta Meets Safari", 
+        excerpt: "Wildlife tours like never before - where urban culture meets nature.", 
+        url: "#",
+        date: "2025-01-05"
+      }
+    ];
+
+    // AI Blog post templates and topics
+    const aiTopics = [
+      {
+        title: "Nairobi Street Art Revolution",
+        excerpt: "How matatu graffiti is transforming urban expression across East Africa.",
+        category: "Culture"
+      },
+      {
+        title: "Digital Nomads Meet Matatu Culture",
+        excerpt: "The intersection of tech culture and traditional transport in modern Kenya.",
+        category: "Technology"
+      },
+      {
+        title: "Sustainable Tourism in Kenya",
+        excerpt: "Balancing cultural tourism with environmental responsibility.",
+        category: "Environment"
+      },
+      {
+        title: "Music of the Streets",
+        excerpt: "How matatu sound systems shaped Kenyan music culture.",
+        category: "Music"
+      },
+      {
+        title: "From Nairobi to the World",
+        excerpt: "How Kenyan street culture influences global urban trends.",
+        category: "Global"
+      },
+      {
+        title: "Youth Entrepreneurship on Wheels",
+        excerpt: "Young Kenyans turning matatu culture into business opportunities.",
+        category: "Business"
+      }
+    ];
+
+    // Generate AI blog posts
+    function generateAIPosts() {
+      const button = document.getElementById('generate-ai-posts');
+      const container = document.getElementById('ai-blog');
+      
+      // Show loading
+      button.disabled = true;
+      button.textContent = 'Generating...';
+      container.innerHTML = '<div class="loading">AI is creating fresh content...</div>';
+      
+      // Simulate AI generation delay
+      setTimeout(() => {
+        const shuffledTopics = aiTopics.sort(() => 0.5 - Math.random());
+        const selectedTopics = shuffledTopics.slice(0, 3);
+        
+        container.innerHTML = selectedTopics.map((topic, index) => `
+          <div class="blog-item">
+            <h3>${topic.title} <span class="ai-badge">AI</span></h3>
+            <p>${topic.excerpt}</p>
+            <p style="color: #888; font-size: 0.9em; margin-bottom: 15px;">
+              Category: ${topic.category} | Generated: ${new Date().toLocaleDateString()}
+            </p>
+            <a href="#" onclick="expandAIPost(${index})">Read AI Story</a>
+          </div>
+        `).join('');
+        
+        button.disabled = false;
+        button.textContent = 'Generate New Posts';
+        
+        console.log('AI Blog posts generated successfully');
+      }, 2000);
+    }
+
+    // Refresh topics (simulate getting new AI topics)
+    function refreshTopics() {
+      const button = document.getElementById('refresh-topics');
+      button.disabled = true;
+      button.textContent = 'Refreshing...';
+      
+      // Simulate API call to get new topics
+      setTimeout(() => {
+        // In real implementation, this would fetch new topics from AI service
+        button.disabled = false;
+        button.textContent = 'Refresh Topics';
+        alert('New AI topics loaded! Click "Generate New Posts" to see fresh content.');
+      }, 1500);
+    }
+
+    // Clear AI posts
+    function clearAIPosts() {
+      document.getElementById('ai-blog').innerHTML = 
+        '<div class="loading">Click "Generate New Posts" to create AI blog content...</div>';
+    }
+
+    // Expand AI post (placeholder for full AI content)
+    function expandAIPost(index) {
+      alert('This would show the full AI-generated blog post. In a real implementation, this would connect to an AI service to generate complete articles.');
+    }
+
+    // Populate manual blog posts
+    function loadManualPosts() {
+      const container = document.getElementById('manual-blog');
+      if (container) {
+        container.innerHTML = manualBlogData.map(post => `
+          <div class="blog-item">
+            <h3>${post.title}</h3>
+            <p>${post.excerpt}</p>
+            <p style="color: #888; font-size: 0.9em; margin-bottom: 15px;">
+              Published: ${post.date}
+            </p>
+            <a href="${post.url}">Read More</a>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Future: Connect to actual AI services
+    window.connectToAI = async function() {
+      try {
+        // This would connect to OpenAI, Claude, or other AI services
+        console.log('AI service connection ready for implementation');
+      } catch (error) {
+        console.log('AI service not yet connected:', error);
+      }
+    };
+
+    // Future: Connect to KV storage for blog data
+    window.loadFromKV = async function() {
+      try {
+        // Connect to Cloudflare KV for blog posts
+        console.log('KV blog storage ready for implementation');
+      } catch (error) {
+        console.log('KV storage not yet connected:', error);
+      }
+    };
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      loadManualPosts();
+      console.log('Blog loaded - Ready for AI integration');
+    });
+  </script>
 </body>
-</html>
+    </html>
