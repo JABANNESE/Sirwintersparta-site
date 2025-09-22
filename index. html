@@ -3,47 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SirWinterSparta</title>
   <title>Sirwintersparta</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Assets/style.css">
+  <script src="Assets/script.js"></script>
+  <link rel="preload" as="image" href="https://i.postimg.cc/CLLmDtV7/hero-bg.jpg">
 </head>
+  
+<style>
+  /* Reset and basic styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Horizontal Navbar */
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px 0;
+  }
+  
+  .navbar ul li {
+    margin: 0 2px;
+  }
+  
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-size: 14px;
+  }
+  
+  .navbar ul li a:hover {
+    background-color: #555;
+  }
+  
+  /* Hero Section with dynamic background */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url('https://i.postimg.cc/28kL5Nfk/Packages.jpg') center center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+  }
+  
+  .hero-logo-container {
+    margin-bottom: 30px;
+  }
+  
+  .hero-logo {
+    max-width: 200px;
+    height: auto;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(0,123,255,0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  }
+  
+  /* Glowing animation */
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(0,123,255,0.3);
+    }
+    to {
+      text-shadow: 0 0 25px rgba(255,255,255,0.8), 0 0 50px rgba(0,123,255,0.6);
+    }
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(0,123,255,0.4);
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 25px rgba(0,123,255,0.8);
+    transform: translateY(-2px);
+  }
+  
+  /* Loading states */
+  .loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .error {
+    color: #ff6b6b;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #222;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .footer-links, .footer-stores, .footer-contact {
+    margin: 20px 0;
+  }
+  
+  .footer-links a, .footer-stores a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover, .footer-stores a:hover {
+    text-decoration: underline;
+  }
+</style>
+
 <body>
-    <!-- Navigation Bar -->
+  <!-- Navigation Bar -->
   <header>
-    
     <nav class="navbar">
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="packages_.html">Packages</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact_.html">Contact</a></li>
        </ul>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero" id="home">
-    <!-- Logo overlay -->
-    <img src="images/logo.png" alt="Sirwintersparta Logo" class="hero-logo">
+    <!-- Logo overlay (loaded from KV) -->
+    <div class="hero-logo-container">
+      <img id="hero-logo" src="https://i.postimg.cc/pTfqYMTG/logo-png.jpg" alt="Sirwintersparta Logo" class="hero-logo">
+    </div>
 
-    <!-- Hero text -->
+    <!-- Hero text (loaded from KV) -->
     <div class="hero-content">
-      <h1>Where Roads Meet Cultures</h1>
-      <p>Matatu Vibes • Tours • Stories</p>
-      <a href="#gallery" class="btn">Enter Gallery</a>
+      <h1 id="hero-title">Where Roads Meet Cultures</h1>
+      <p id="hero-subtitle">Matatu Vibes • Tours • Stories</p>
+      <a href="Gallery.html" class="btn" id="hero-cta">Enter Gallery</a>
     </div>
   </section>
- <!-- Footer -->
-    <footer>
+  
+  <!-- Dynamic slogan rotation -->
+  <p id="slogan">Matatu Vibes</p>
+
+  <!-- Footer -->
+  <footer>
     <div class="footer-links">
       <p>Follow Us:</p>
       <a href="https://www.fb.com/l/6lp1kJRRR" target="_blank">Facebook</a> |
       <a href="https://www.instagram.com/sirwintersparta?igsh=MXE1dHVwZHZ1d3g1OA==" target="_blank">Instagram</a> |
       <a href="https://x.com/sirwintersparta?s=09" target="_blank">Twitter</a> |
-      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> 
-      <a href="https://pin.it/1aoHDrz2s" target="_blank">pinterest</a>
+      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> |
+      <a href="https://pin.it/1aoHDrz2s" target="_blank">Pinterest</a>
     </div>
 
     <div class="footer-stores">
@@ -54,12 +193,133 @@
       <a href="https://beacons.ai/signup?c=sirwintersparta" target="_blank">Beacons</a>
     </div>
 
-    <div class="footer-contact">
+    <div class="footer-contact" id="footer-contact">
       <p>Email: iyusuf35@yahoo.com</p>
-      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID:LGK2QMM67ZZNS</p>
-      <p>phone contacts: +254 700 160161/+254 725358159
-         </p>
+      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID: LGK2QMM67ZZNS</p>
+      <p>Phone contacts: +254 700 160161/+254 725358159</p>
+      <p>©sirwintersparta</p>
      </div>
-      </body>
-</html>
+  </footer>
 
+  <script>
+    // KV API Configuration
+    const API_BASE = '/api';
+    
+    // Load site configuration from KV
+    async function loadSiteConfig() {
+      try {
+        const response = await fetch(`${API_BASE}/config`);
+        if (!response.ok) throw new Error('Failed to load config');
+        
+        const config = await response.json();
+        
+        // Update hero content
+        if (config.hero) {
+          const heroTitle = document.getElementById('hero-title');
+          const heroSubtitle = document.getElementById('hero-subtitle');
+          const heroLogo = document.getElementById('hero-logo');
+          const heroCta = document.getElementById('hero-cta');
+          
+          if (heroTitle && config.hero.title) heroTitle.textContent = config.hero.title;
+          if (heroSubtitle && config.hero.subtitle) heroSubtitle.textContent = config.hero.subtitle;
+          if (heroLogo && config.hero.logo) heroLogo.src = config.hero.logo;
+          if (heroCta && config.hero.ctaText) heroCta.textContent = config.hero.ctaText;
+        }
+        
+        // Update footer contact
+        if (config.contact) {
+          const footerContact = document.getElementById('footer-contact');
+          if (footerContact && config.contact.html) {
+            footerContact.innerHTML = config.contact.html;
+          }
+        }
+        
+        console.log('Site configuration loaded from KV');
+        
+      } catch (error) {
+        console.log('Using fallback configuration:', error.message);
+        // Fallback to default content (already in HTML)
+      }
+    }
+    
+    // Dynamic slogan rotation
+    async function loadSlogans() {
+      try {
+        const response = await fetch(`${API_BASE}/slogans`);
+        if (!response.ok) throw new Error('Failed to load slogans');
+        
+        const data = await response.json();
+        const slogans = data.slogans || ["Matatu Vibes", "Tours", "Stories", "Digital Culture", "Nairobi Streets"];
+        
+        let index = 0;
+        const sloganElement = document.getElementById("slogan");
+        
+        setInterval(() => {
+          if (sloganElement) {
+            sloganElement.textContent = slogans[index];
+            index = (index + 1) % slogans.length;
+          }
+        }, 3000);
+        
+      } catch (error) {
+        console.log('Using fallback slogans:', error.message);
+        // Fallback slogan rotation
+        const slogans = ["Matatu Vibes", "Tours", "Stories", "Digital Culture", "Nairobi Streets"];
+        let index = 0;
+        const sloganElement = document.getElementById("slogan");
+        
+        setInterval(() => {
+          if (sloganElement) {
+            sloganElement.textContent = slogans[index];
+            index = (index + 1) % slogans.length;
+          }
+        }, 3000);
+      }
+    }
+    
+    // Analytics and tracking
+    async function trackPageView() {
+      try {
+        await fetch(`${API_BASE}/analytics`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page: 'home',
+            timestamp: new Date().toISOString(),
+            referrer: document.referrer
+          })
+        });
+      } catch (error) {
+        console.log('Analytics tracking failed:', error.message);
+      }
+    }
+    
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', async function() {
+      console.log('Sirwintersparta homepage loading...');
+      
+      // Load dynamic content from KV
+      await Promise.all([
+        loadSiteConfig(),
+        loadSlogans(),
+        trackPageView()
+      ]);
+      
+      console.log('Homepage initialized with KV integration');
+    });
+    
+    // Service worker registration for offline support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('SW registered: ', registration);
+          })
+          .catch(function(registrationError) {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
