@@ -3,60 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - SirWinterSparta</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Sirwintersparta | About</title>
+  <link rel="stylesheet" href="Assets/style.css">
+  <script src="Assets/script.js" defer></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                  url('https://i.postimg.cc/h4sTT1g1/About.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar ul li {
+      margin: 0 20px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .navbar ul li a:hover,
+    .navbar ul li a.active {
+      color: orange;
+      background-color: rgba(255, 165, 0, 0.2);
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 80px 20px;
+      text-align: center;
+      background-color: rgba(0,0,0,0.7);
+      border-radius: 15px;
+      max-width: 900px;
+      margin: 50px auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+    }
+
+    .about-section h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+      color: #fff;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .about-section p:last-of-type {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ffd700;
+      margin-top: 40px;
+    }
+
+    .about-section strong {
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+
+    /* Mission & Vision Cards */
+    .about-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin: 50px 0;
+    }
+
+    .about-card {
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 4px solid #ffd700;
+      transition: transform 0.3s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .about-card h3 {
+      color: #ffd700;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    .about-card p {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .stat-item {
+      background: rgba(255, 215, 0, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffd700;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 5px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(0, 0, 0, 0.9);
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: orange;
+      text-decoration: underline;
+    }
+
+    .footer-links, .footer-stores, .footer-contact {
+      margin: 20px 0;
+    }
+
+    footer p {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .about-section {
+        margin: 20px auto;
+        padding: 40px 15px;
+      }
+
+      .about-section h1 {
+        font-size: 2.2rem;
+      }
+
+      .about-section p {
+        font-size: 1rem;
+      }
+
+      .navbar ul li {
+        margin: 5px 10px;
+      }
+
+      .navbar ul li a {
+        font-size: 14px;
+      }
+
+      .about-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-section {
+        grid-template-columns: 1fr;
+      }
+      
+      .stat-number {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="packages.html">Packages</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="packages_.html">Packages</a></li>
+      <li><a href="Gallery.html">Gallery</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact_.html">Contact</a></li>
+    </ul>
+  </nav>
 
-  <!-- Hero -->
-  <section class="hero about-hero">
-    <div class="overlay">
-      <h1>About Us</h1>
-      <p>Our journey, our vision, our culture.</p>
+  <!-- About Section -->
+  <section class="about-section">
+    <h1>About Sirwintersparta</h1>
+    <p>
+      Sirwintersparta is more than a brand — it's a cultural movement.  
+      We bring together the raw energy of matatu culture, the thrill of travel,  
+      and the timeless art of storytelling. Our mission is to create experiences  
+      that connect people across roads, cities, and borders.
+    </p>
+    <p>
+      From digital products and street-inspired fashion, to unforgettable  
+      tours and creative storytelling, we exist where culture meets adventure.  
+      Every image, every ride, every design reflects the heartbeat of the streets  
+      and the soul of the journey.
+    </p>
+    <p>
+      Welcome to our world. This is Sirwintersparta:  
+      <strong>Where Roads Meet Cultures.</strong>
+    </p>
+
+    <!-- Mission & Vision Cards -->
+    <div class="about-cards">
+      <div class="about-card">
+        <h3>Our Mission</h3>
+        <p>To celebrate and share the vibrant culture of Kenya's streets through authentic experiences, creative storytelling, and meaningful connections that bridge communities worldwide.</p>
+      </div>
+      <div class="about-card">
+        <h3>Our Vision</h3>
+        <p>A world where every journey tells a story, every culture is celebrated, and every road becomes a bridge between hearts and minds across the globe.</p>
+      </div>
+      <div class="about-card">
+        <h3>Our Values</h3>
+        <p>Authenticity, cultural respect, adventure, community, and the belief that every street has a story worth sharing with the world.</p>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Cultural Experiences Shared</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">50+</span>
+        <span class="stat-label">Tours Organized</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">1000+</span>
+        <span class="stat-label">Stories Told</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">Countries Reached</span>
+      </div>
     </div>
   </section>
 
-  <!-- Content -->
-  <section class="page-content">
-    <h2>Who We Are</h2>
-    <p>
-      SirWinterSparta is more than just a brand — it is a movement rooted in the matatu
-      culture of Kenya, road trip adventures, and storytelling that brings people together.
-    </p>
-    <p>
-      Our mission is to merge <strong>art, culture, and tourism</strong> into experiences that inspire,
-      educate, and entertain. From matatu-inspired digital art to curated road trips across
-      Africa, we live and breathe the spirit of connection.
-    </p>
-    <p>
-      Founded with the belief that roads are not just pathways but meeting grounds of cultures,
-      SirWinterSparta continues to grow into a global brand that embodies creativity,
-      innovation, and community.
-    </p>
-  </section>
-
   <!-- Footer -->
-      <footer>
+  <footer>
     <div class="footer-links">
       <p>Follow Us:</p>
       <a href="https://www.fb.com/l/6lp1kJRRR" target="_blank">Facebook</a> |
       <a href="https://www.instagram.com/sirwintersparta?igsh=MXE1dHVwZHZ1d3g1OA==" target="_blank">Instagram</a> |
       <a href="https://x.com/sirwintersparta?s=09" target="_blank">Twitter</a> |
-      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> 
-      <a href="https://pin.it/1aoHDrz2s" target="_blank">pinterest</a>
+      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> |
+      <a href="https://pin.it/1aoHDrz2s" target="_blank">Pinterest</a>
     </div>
 
     <div class="footer-stores">
@@ -69,10 +330,10 @@
 
     <div class="footer-contact">
       <p>Email: iyusuf35@yahoo.com</p>
-      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID:LGK2QMM67ZZNS</p>
-      <p>phone contacts: +254 700 160161/+254 725358159
-         </p>
-     </div>
+      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID: LGK2QMM67ZZNS</p>
+      <p>Phone contacts: +254 700 160161/+254 725358159</p>
+      <p>© 2025 Sirwintersparta. All Rights Reserved. Unauthorized use or reproduction is prohibited.</p>
+    </div>
   </footer>
 </body>
-</html>
+  </html>
