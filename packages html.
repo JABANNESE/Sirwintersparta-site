@@ -4,59 +4,438 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Packages - SirWinterSparta</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Assets/style.css">
+  <script defer src="Assets/script.js"></script>
+  <style>
+    /* Navbar Styling */
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      background-color: #000;
+      padding: 12px 0;
+    }
+    .navbar ul li {
+      margin: 0 15px;
+    }
+    .navbar ul li a {
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      text-shadow: 0 0 5px yellow, 0 0 10px #ff0;
+    }
+    .navbar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Background */
+    .hero {
+      min-height: 60vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://i.postimg.cc/6TwBMvds/1757299446854.jpg') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 50px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+
+    /* Package Sections */
+    .package-section {
+      margin: 50px 0;
+      padding: 30px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    /* Tours Grid */
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+
+    .package-card {
+      background: #111;
+      color: #eee;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .package-card h2 {
+      color: gold;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: gold;
+      color: #000;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    /* T-shirt Print Section */
+    .tshirt-section {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 60px 20px;
+      margin: 50px 0;
+    }
+
+    .tshirt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tshirt-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tshirt-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    }
+
+    .tshirt-image {
+      width: 100%;
+      height: 250px;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #666;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tshirt-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tshirt-info {
+      padding: 20px;
+    }
+
+    .tshirt-info h3 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .tshirt-info p {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    .tshirt-price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    .tshirt-btn {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tshirt-btn:hover {
+      background: #0056b3;
+    }
+
+    /* AI Integration Badge */
+    .ai-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    /* Store Integration Section */
+    .store-integration {
+      background: #111;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .store-integration h3 {
+      color: gold;
+      margin-bottom: 20px;
+    }
+
+    .store-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .store-link {
+      padding: 10px 20px;
+      background: gold;
+      color: black;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .store-link:hover {
+      background: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: #eee;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    footer a {
+      color: gold;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links, .footer-stores, .footer-contact {
+      margin: 20px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .store-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .store-link {
+        width: 200px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
+
+  <!-- Navigation -->
   <header>
     <nav class="navbar">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="packages.html" class="active">Packages</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="packages_.html">Packages</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact_.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero packages-hero">
-    <div class="overlay">
-      <h1>Our Packages</h1>
-      <p>Choose an experience that matches your vibe</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Our Packages & Products</h1>
+    <p>Tours, experiences, and exclusive merchandise</p>
+  </section>
+
+  <!-- Tours Section -->
+  <section class="package-section">
+    <h2 class="section-title">Travel Packages</h2>
+    <p class="section-subtitle">Choose your adventure. Book instantly via WhatsApp.</p>
+    
+    <div class="packages">
+      <div class="package-card">
+        <h2>Matatu Culture Tour</h2>
+        <p>Experience Nairobi's iconic matatu rides and street art.</p>
+        <a href="https://wa.me/254700160161?text=Hello%20SirWinterSparta!%20I%20want%20to%20book%20the%20Matatu%20Culture%20Tour." class="btn">Book Now</a>
+      </div>
+
+      <div class="package-card">
+        <h2>Safari Adventure</h2>
+        <p>Explore Kenya's wildlife with a guided safari trip.</p>
+        <a href="https://wa.me/254700160161?text=Hello%20SirWinterSparta!%20I%20want%20to%20book%20the%20Safari%20Adventure." class="btn">Book Now</a>
+      </div>
+
+      <div class="package-card">
+        <h2>Road Trip Experience</h2>
+        <p>Unforgettable road trip vibes across Kenya's landscapes.</p>
+        <a href="https://wa.me/254700160161?text=Hello%20SirWinterSparta!%20I%20want%20to%20book%20the%20Road%20Trip%20Experience." class="btn">Book Now</a>
+      </div>
     </div>
   </section>
 
-  <!-- Packages Section -->
-  <section class="page-content">
-    <h2>Available Tours & Experiences</h2>
-    <div class="packages-grid">
-      <div class="package-card">
-        <h3>Matatu Culture Tour</h3>
-        <p>Ride through Nairobi streets and experience graffiti-filled matatus firsthand.</p>
+  <!-- T-shirt Print Section -->
+  <section class="tshirt-section">
+    <h2 class="section-title">T-shirt Print Collection</h2>
+    <p class="section-subtitle">Amani-designed prints celebrating matatu culture and street vibes</p>
+    
+    <div class="tshirt-grid" id="tshirt-grid">
+      <!-- T-shirt items with real designs -->
+      <div class="tshirt-card">
+        <div class="tshirt-image">
+          <img src="https://i.postimg.cc/McVzDFqp/copilot-image-1754411477259.png" alt="AI Generated Design 1">
+          <div class="ai-badge">Amani Design</div>
+        </div>
+        <div class="tshirt-info">
+          <h3>Copilot Street Art Tee</h3>
+          <p>AI-generated street art design with vibrant cultural elements</p>
+          <div class="tshirt-price">$12.00</div>
+          <button class="tshirt-btn" onclick="orderTshirt('Copilot Street Art Tee')">Order Now</button>
+        </div>
       </div>
-      <div class="package-card">
-        <h3>Wildlife Safari</h3>
-        <p>Explore the beauty of Kenya’s national parks and witness nature like never before.</p>
+
+      <div class="tshirt-card">
+        <div class="tshirt-image">
+          <img src="https://i.postimg.cc/mz4B6ygN/copilot-image-1754411481513.png" alt="AI Generated Design 2">
+          <div class="ai-badge">Amani Design</div>
+        </div>
+        <div class="tshirt-info">
+          <h3>AI Culture Fusion Tee</h3>
+          <p>Modern AI interpretation of cultural fusion and street vibes</p>
+          <div class="tshirt-price">$12.00</div>
+          <button class="tshirt-btn" onclick="orderTshirt('AI Culture Fusion Tee')">Order Now</button>
+        </div>
       </div>
-      <div class="package-card">
-        <h3>Road Trip Adventure</h3>
-        <p>Join our cross-country road trips blending culture, music, and photography.</p>
+
+      <div class="tshirt-card">
+        <div class="tshirt-image">
+          <img src="https://i.postimg.cc/mcR5vX7D/image-1752087671025.jpg" alt="Street Culture Design">
+          <div class="ai-badge">Amani Design</div>
+        </div>
+        <div class="tshirt-info">
+          <h3>Street Culture Classic</h3>
+          <p>Bold street culture design celebrating urban artistry</p>
+          <div class="tshirt-price">$12.00</div>
+          <button class="tshirt-btn" onclick="orderTshirt('Street Culture Classic')">Order Now</button>
+        </div>
+      </div>
+
+      <div class="tshirt-card">
+        <div class="tshirt-image">
+          <img src="https://i.postimg.cc/FY06n5d8/image-1752098812633.jpg" alt="Urban Vibes Design">
+          <div class="ai-badge">Amani Design</div>
+        </div>
+        <div class="tshirt-info">
+          <h3>Urban Vibes Tee</h3>
+          <p>Dynamic urban-inspired design with modern aesthetics</p>
+          <div class="tshirt-price">$12.00</div>
+          <button class="tshirt-btn" onclick="orderTshirt('Urban Vibes Tee')">Order Now</button>
+        </div>
+      </div>
+
+      <div class="tshirt-card">
+        <div class="tshirt-image">
+          <img src="https://i.postimg.cc/3d4VmDKK/image-1752685777799.jpg" alt="Culture Mix Design">
+          <div class="ai-badge">Amani Design</div>
+        </div>
+        <div class="tshirt-info">
+          <h3>Culture Mix Expression</h3>
+          <p>Artistic blend of cultural elements and modern design</p>
+          <div class="tshirt-price">$12.00</div>
+          <button class="tshirt-btn" onclick="orderTshirt('Culture Mix Expression')">Order Now</button>
+        </div>
+      </div>
+
+      <div class="tshirt-card">
+        <div class="tshirt-image">
+          <img src="https://i.postimg.cc/2VsJw86n/image-1753063104016.jpg" alt="Sparta Heritage Design">
+          <div class="ai-badge">Amani Design</div>
+        </div>
+        <div class="tshirt-info">
+          <h3>Sparta Heritage Tee</h3>
+          <p>Heritage-inspired design celebrating Sparta culture and values</p>
+          <div class="tshirt-price">$12.00</div>
+          <button class="tshirt-btn" onclick="orderTshirt('Sparta Heritage Tee')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Store Integration -->
+    <div class="store-integration">
+      <h3>Available on Our Partner Stores</h3>
+      <div class="store-links">
+        <a href="https://dgg6rv-2p.myshopify.com" target="_blank" class="store-link">Shopify Store</a>
+        <a href="https://payhip.com/Sirwintersparta-payhip" target="_blank" class="store-link">Payhip Store</a>
+        <a href="https://wa.me/254725358159" target="_blank" class="store-link">WhatsApp Order</a>
+        <a href="#" onclick="generateAIDesign()" class="store-link">Generate AI Design</a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-      <footer>
+  <footer>
     <div class="footer-links">
       <p>Follow Us:</p>
       <a href="https://www.fb.com/l/6lp1kJRRR" target="_blank">Facebook</a> |
       <a href="https://www.instagram.com/sirwintersparta?igsh=MXE1dHVwZHZ1d3g1OA==" target="_blank">Instagram</a> |
       <a href="https://x.com/sirwintersparta?s=09" target="_blank">Twitter</a> |
-      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> 
-      <a href="https://pin.it/1aoHDrz2s" target="_blank">pinterest</a>
+      <a href="https://www.tiktok.com/@sirwintersparta?_t=ZM-8zP9eENfIGe&_r=1" target="_blank">TikTok</a> |
+      <a href="https://pin.it/1aoHDrz2s" target="_blank">Pinterest</a>
     </div>
 
     <div class="footer-stores">
@@ -69,10 +448,96 @@
 
     <div class="footer-contact">
       <p>Email: iyusuf35@yahoo.com</p>
-      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID:LGK2QMM67ZZNS</p>
-      <p>phone contacts: +254 700 160161/+254 725358159
-         </p>
-     </div>
-      </body>
-</html>
+      <p>Mpesa lipa na poch Till: 0725358159 | PayPal Merchant ID: LGK2QMM67ZZNS</p>
+      <p>Phone contacts: +254 700 160161/+254 725358159</p>
+      <p>© 2025 Sirwintersparta. All Rights Reserved. Unauthorized use or reproduction is prohibited.</p>
+    </div>
+  </footer>
 
+  <script>
+    // T-shirt data structure (ready for AI integration)
+    const tshirtCollection = [
+      {
+        id: 1,
+        name: "Matatu Vibes Tee",
+        description: "Street art inspired design celebrating Nairobi's transport culture",
+        price: 19.99,
+        image: "https://via.placeholder.com/280x250/DAA520/000000?text=Matatu+Vibes+Print",
+        aiGenerated: true,
+        tags: ["matatu", "culture", "street-art"]
+      },
+      {
+        id: 2,
+        name: "Sparta Culture Tee",
+        description: "Bold typography celebrating the spirit of adventure and culture",
+        price: 22.99,
+        image: "https://via.placeholder.com/280x250/FF6B6B/FFFFFF?text=Sparta+Culture",
+        aiGenerated: true,
+        tags: ["sparta", "adventure", "typography"]
+      },
+      {
+        id: 3,
+        name: "Roads Meet Cultures Tee",
+        description: "Artistic interpretation of our iconic tagline in vibrant colors",
+        price: 24.99,
+        image: "https://via.placeholder.com/280x250/4ECDC4/000000?text=Roads+Meet+Cultures",
+        aiGenerated: true,
+        tags: ["roads", "cultures", "tagline"]
+      }
+    ];
+
+    // Order t-shirt function
+    function orderTshirt(tshirtName) {
+      const message = `Hello SirWinterSparta! I want to order the ${tshirtName}. Please send me details about sizes, colors, and payment.`;
+      const whatsappUrl = `https://wa.me/254725358159?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // Generate AI design function (ready for AI integration)
+    function generateAIDesign() {
+      alert('AI Design Generator coming soon! This will connect to AI services to create custom t-shirt designs based on your preferences.');
+      // Future: Connect to AI image generation APIs
+      // Example: DALL-E, Midjourney API, Stable Diffusion
+    }
+
+    // Load dynamic t-shirts (ready for e-commerce integration)
+    function loadDynamicTshirts() {
+      // This function will connect to your e-commerce APIs
+      // Shopify, Payhip, or custom inventory system
+      console.log('T-shirt collection loaded:', tshirtCollection);
+    }
+
+    // Future: Connect to e-commerce APIs
+    window.connectToShopify = async function() {
+      try {
+        // Connect to Shopify API for real-time inventory
+        // const response = await fetch('/api/shopify/products');
+        // const products = await response.json();
+        console.log('Shopify integration ready');
+      } catch (error) {
+        console.log('Shopify not yet connected:', error);
+      }
+    };
+
+    // Future: Connect to AI design services
+    window.connectToAIDesign = async function() {
+      try {
+        // Connect to AI image generation services
+        // const response = await fetch('/api/ai-design', {
+        //   method: 'POST',
+        //   body: JSON.stringify({ style: 'matatu-culture', colors: ['gold', 'black'] })
+        // });
+        console.log('AI design service ready');
+      } catch (error) {
+        console.log('AI design service not yet connected:', error);
+      }
+    };
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      loadDynamicTshirts();
+      console.log('Packages page loaded - Ready for AI and e-commerce integration');
+    });
+  </script>
+</body>
+</html>
